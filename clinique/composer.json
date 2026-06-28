@@ -42,10 +42,11 @@
             "npm install --ignore-scripts",
             "npm run build"
         ],
-             "dev": [
+              "dev-server": [
             "Composer\\Config::disableProcessTimeout",
-            "npx concurrently \"php artisan serve\" \"php artisan reverb:start\""
+            "npx concurrently --kill-others \"php artisan serve\" \"php artisan reverb:start\" \"php artisan queue:work --sleep=1 --tries=1\""
         ],
+        "dev": "@dev-server",
         "test": [
             "@php artisan config:clear --ansi @no_additional_args",
             "@php artisan test"

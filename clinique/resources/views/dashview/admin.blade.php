@@ -5,9 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <title>Clinique — Admin · Queue Dashboard</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="{{ asset('images/weblog.ico') }}" type="image/x-icon">
+
 <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -47,9 +46,7 @@
         border-radius: 4px;
     }
 
-    /* ══════════════════════════════
-       TOP BAR
-    ══════════════════════════════ */
+
     .dash-topbar {
         background: var(--white);
         border-bottom: 1px solid var(--border-soft);
@@ -65,19 +62,7 @@
     .topbar-left { display: flex; align-items: center; gap: 14px; }
 
     .wordmark { display: flex; align-items: center; gap: 9px; }
-
-    .wordmark-icon {
-        width: 32px; height: 32px;
-        background: linear-gradient(145deg, var(--cyan-deep), var(--cyan-mid));
-        border-radius: 9px;
-        display: grid;
-        place-items: center;
-    }
-
-    .wordmark-icon svg { width: 17px; height: 17px; fill: none; stroke: var(--cyan-bright); stroke-width: 2; stroke-linecap: round; }
-
-    .wordmark-text { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: var(--ink); letter-spacing: -0.3px; }
-    .wordmark-text span { color: var(--cyan-mid); }
+    .wordmark-logo { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: var(--ink); letter-spacing: -0.3px; }
 
     .admin-chip {
         font-size: 10.5px;
@@ -136,9 +121,7 @@
     .profile-name { font-size: 12.5px; font-weight: 600; color: var(--ink); }
     .profile-role { font-size: 10.5px; color: var(--ink-muted); }
 
-    /* ══════════════════════════════
-       MAIN
-    ══════════════════════════════ */
+
     .dash-main {
         max-width: 1180px;
         margin: 0 auto;
@@ -183,7 +166,7 @@
     }
     .btn-history:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(14,116,144,0.36); }
 
-    /* ── STAT ROW ── */
+
     .stat-row {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -218,7 +201,7 @@
     .stat-value.live { color: var(--cyan-deep); display: flex; align-items: center; gap: 7px; }
     .stat-value.live .live-dot-sm { width: 7px; height: 7px; border-radius: 50%; background: var(--cyan-bright); animation: pulse-dot 1.6s ease-in-out infinite; }
 
-    /* ── QUEUE PANEL ── */
+
     .queue-panel {
         background: var(--white);
         border: 1px solid var(--border-soft);
@@ -292,7 +275,7 @@
         pointer-events: none;
     }
 
-    /* ── TABLE ── */
+   
     .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border-soft); }
 
     table { width: 100%; border-collapse: collapse; min-width: 760px; }
@@ -390,9 +373,7 @@
         font-size: 13.5px;
     }
 
-    /* ══════════════════════════════
-       MODAL
-    ══════════════════════════════ */
+ 
     .modal-overlay {
         position: fixed; inset: 0;
         background: rgba(15,23,42,0.48);
@@ -531,7 +512,7 @@
     }
     .btn-foot-export:disabled { opacity: 0.5; cursor: not-allowed; }
 
-    /* ── PAGINATION ── */
+  
     .pagination {
         display: flex; align-items: center; justify-content: center; gap: 6px;
         padding: 20px 0 4px;
@@ -549,9 +530,6 @@
     .page-btn.active { background: var(--cyan-deep); border-color: var(--cyan-deep); color: var(--white); }
     .page-info { font-size: 12px; color: var(--ink-muted); margin: 0 8px; }
 
-    /* ══════════════════════════════
-       RESPONSIVE
-    ══════════════════════════════ */
     @media (max-width: 980px) {
         .stat-row { grid-template-columns: repeat(2, 1fr); }
         .report-stats { grid-template-columns: repeat(2, 1fr); }
@@ -577,7 +555,7 @@
         .btn-history:hover, .btn-generate:hover { transform: none; }
     }
 
-    /* ── LOADING SPINNER ON BUTTONS ── */
+
     .btn-loading {
         pointer-events: none !important;
         opacity: 0.7 !important;
@@ -588,7 +566,6 @@
     .spinner { animation: spin 0.8s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ── TOAST ── */
     .toast-container {
         position: fixed;
         top: 20px;
@@ -621,28 +598,23 @@
         to { transform: translateX(0); opacity: 1; }
     }
 </style>
+@vite('resources/js/app.js')
 </head>
 <body>
 
 <div class="toast-container" id="toastContainer"></div>
 
-<!-- ═══════════════ TOP BAR ═══════════════ -->
 <header class="dash-topbar">
     <div class="topbar-left">
         <div class="wordmark">
-            <div class="wordmark-icon">
-                <svg viewBox="0 0 18 18"><path d="M9 2v4M9 12v4M2 9h4M12 9h4"/><circle cx="9" cy="9" r="2.5"/></svg>
-            </div>
-            <span class="wordmark-text">Clini<span>que</span></span>
+            <img src="{{ asset('images/logo2.png') }}" alt="Clinique logo" style="height: 32px; width: auto;">
+            <span class="wordmark-logo">Clinique</span>
         </div>
         <span class="admin-chip">Admin</span>
     </div>
 
     <div class="topbar-right">
         <span class="live-chip"><span class="live-dot"></span><span>Queue syncing live</span></span>
-        <button class="icon-btn" title="Notifications" aria-label="Notifications">
-            <svg viewBox="0 0 18 18"><path d="M5 7a4 4 0 0 1 8 0c0 2 1 3 1 4H4c0-1 1-2 1-4Z"/><path d="M7.5 13.5a1.5 1.5 0 0 0 3 0"/></svg>
-        </button>
         <div class="profile-chip">
             <div class="avatar">{{ substr(Auth::user()->name, 0, 2) }}</div>
             <div class="profile-meta">
@@ -659,7 +631,6 @@
     </div>
 </header>
 
-<!-- ═══════════════ MAIN ═══════════════ -->
 <main class="dash-main">
 
     <div class="page-head">
@@ -678,13 +649,12 @@
         </a>
     </div>
 
-    <!-- STATS -->
     <section class="stat-row">
         <div class="stat-card">
             <div class="stat-icon cyan"><svg viewBox="0 0 18 18"><rect x="2" y="4" width="14" height="10" rx="2"/><path d="M6 4V3M12 4V3"/><path d="M2 8h14"/></svg></div>
             <div>
                 <div class="stat-label">Now Serving</div>
-                <div class="stat-value live"><span class="live-dot-sm"></span>#039</div>
+                <div class="stat-value live"><span class="live-dot-sm"></span>-</div>
                 <div class="stat-note">+1 more at W-3</div>
             </div>
         </div>
@@ -692,15 +662,15 @@
             <div class="stat-icon amber"><svg viewBox="0 0 18 18"><path d="M9 2a5 5 0 0 0 0 10A5 5 0 0 0 9 2z"/><path d="M3 16c0-2.5 2.7-4 6-4s6 1.5 6 4"/></svg></div>
             <div>
                 <div class="stat-label">Waiting</div>
-                <div class="stat-value">8 patients</div>
-                <div class="stat-note">2 joined in the last 10 min</div>
+                <div class="stat-value"> 0 patients</div>
+                <div class="stat-note">0 joined in the last 0 min</div>
             </div>
         </div>
         <div class="stat-card">
             <div class="stat-icon blue"><svg viewBox="0 0 18 18"><circle cx="9" cy="9" r="7"/><path d="M9 5v4l3 2"/></svg></div>
             <div>
                 <div class="stat-label">Avg. Wait</div>
-                <div class="stat-value">~13 min</div>
+                <div class="stat-value">~0 min</div>
                 <div class="stat-note">Across all waiting entries</div>
             </div>
         </div>
@@ -714,7 +684,7 @@
         </div>
     </section>
 
-    <!-- QUEUE PANEL -->
+
     <section class="queue-panel">
         <div class="panel-head">
             <h2 class="panel-title">Live Queue</h2>
@@ -776,7 +746,6 @@
 
 </main>
 
-<!-- ═══════════════ MODAL ═══════════════ -->
 <div class="modal-overlay" id="historyModalOverlay">
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="historyTitle">
         <div class="modal-head">
@@ -973,7 +942,7 @@
             .catch(function(e) { toast(e.message, 'error'); });
     }
 
-    // ── Sort helper: called/serving first, then waiting, then done/left ──
+
     function statusGroup(row) {
         var st = row.rawStatus;
         if (st === 'called') return 0;
@@ -994,7 +963,7 @@
     }
 
     function compareRows(a, b) {
-        // Always group: active first, then completed/left
+     
         var gA = statusGroup(a), gB = statusGroup(b);
         if (gA !== gB) return gA - gB;
 
@@ -1065,7 +1034,7 @@
         renderPagination(total, state.page);
     }
 
-    // Sorting via header click
+
     table.querySelectorAll("thead th[data-key]").forEach(function(th) {
         th.addEventListener("click", function() {
             var key = th.dataset.key;
@@ -1092,12 +1061,15 @@
         fetchQueueList();
     });
 
+  
     fetchQueueList();
-    setInterval(fetchQueueList, 5000);
+
+    document.addEventListener('queue:updated', fetchQueueList);
+
+    setInterval(fetchQueueList, 60000);
 
     window.markComplete = markComplete;
 
-    // ── Modal: Generate Queue History ────────────────────
     var overlay = document.getElementById("historyModalOverlay");
     var openBtn = document.getElementById("openHistoryBtn");
     var closeBtn = document.getElementById("closeHistoryBtn");

@@ -5,9 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <title>Clinique — My Queue</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="{{ asset('images/weblog.ico') }}" type="image/x-icon">
+
 <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -54,9 +53,7 @@
 
     :focus-visible { outline: 2px solid var(--cyan-mid); outline-offset: 2px; border-radius: 4px; }
 
-    /* ══════════════════════════════
-       TOP BAR
-    ══════════════════════════════ */
+
     .topbar {
         background: var(--white);
         border-bottom: 1px solid var(--border-soft);
@@ -67,30 +64,9 @@
     }
 
     .wordmark { display: flex; align-items: center; gap: 9px; }
-    .wordmark-icon {
-        width: 32px; height: 32px;
-        background: linear-gradient(145deg, var(--cyan-deep), var(--cyan-mid));
-        border-radius: 9px;
-        display: grid; place-items: center;
-    }
-    .wordmark-icon svg { width: 17px; height: 17px; fill: none; stroke: var(--cyan-bright); stroke-width: 2; stroke-linecap: round; }
-    .wordmark-text { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: var(--ink); letter-spacing: -0.3px; }
-    .wordmark-text span { color: var(--cyan-mid); }
+    .wordmark-logo { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: var(--ink); letter-spacing: -0.3px; }
 
     .topbar-right { display: flex; align-items: center; gap: 10px; }
-
-    .icon-btn {
-        width: 36px; height: 36px;
-        display: grid; place-items: center;
-        background: var(--white);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        cursor: pointer;
-        color: var(--ink-soft);
-        transition: background 0.15s ease, border-color 0.15s ease;
-    }
-    .icon-btn:hover { background: var(--cyan-ice); border-color: var(--border-soft); }
-    .icon-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
     .profile-chip { display: flex; align-items: center; gap: 9px; padding: 5px 12px 5px 6px; border-radius: 24px; border: 1px solid var(--border); background: var(--white); }
     .avatar {
@@ -103,15 +79,13 @@
     .profile-name { font-size: 12.5px; font-weight: 600; color: var(--ink); }
     .profile-role { font-size: 10.5px; color: var(--ink-muted); }
 
-    /* ══════════════════════════════
-       MAIN
-    ══════════════════════════════ */
+
 
     .page-eyebrow { font-size: 10.5px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--cyan-mid); text-align: center; }
     .page-title { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -0.7px; color: var(--ink); text-align: center; }
     .page-sub { font-size: 13.5px; color: var(--ink-soft); text-align: center; max-width: 380px; line-height: 1.65; }
 
-    /* ── STATUS CARD ── */
+
     .status-card {
         width: 100%;
         background: var(--white);
@@ -126,7 +100,7 @@
         transition: box-shadow 0.3s ease, border-color 0.3s ease;
     }
 
-    /* — empty state — */
+ 
     .empty-icon {
         width: 76px; height: 76px;
         border-radius: 50%;
@@ -137,7 +111,7 @@
     .empty-heading { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); text-align: center; }
     .empty-text { font-size: 13px; color: var(--ink-soft); text-align: center; max-width: 320px; line-height: 1.6; }
 
-    /* — joined state — */
+
     .ticket-label { font-size: 10.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-muted); }
     .ticket-number { font-family: 'Syne', sans-serif; font-size: 64px; font-weight: 800; color: var(--cyan-deep); line-height: 1; letter-spacing: -2px; }
 
@@ -161,7 +135,7 @@
     .auto-note { font-size: 11px; color: var(--ink-muted); display: flex; align-items: center; gap: 6px; }
     .auto-note svg { width: 12px; height: 12px; stroke: var(--ink-muted); fill: none; stroke-width: 1.8; stroke-linecap: round; }
 
-    /* — stepper — */
+  
     .stepper { width: 100%; display: flex; align-items: flex-start; padding: 4px 6px; }
     .step { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; }
     .step-dot {
@@ -186,7 +160,7 @@
     .step.current .step-label { color: var(--cyan-deep); }
     .step.done .step-label { color: var(--ink); }
 
-    /* — now serving strip — */
+ 
     .now-serving-strip {
         width: 100%;
         display: flex;
@@ -203,7 +177,7 @@
     .ns-label { font-size: 10px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: var(--ink-muted); }
     .ns-value { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--ink); margin-top: 1px; }
 
-    /* — your turn state — */
+  
     .turn-card {
         width: 100%;
         background: linear-gradient(150deg, #0C4A6E 0%, #0E7490 55%, #0891B2 100%);
@@ -226,7 +200,7 @@
     .turn-heading { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: var(--white); letter-spacing: -0.5px; }
     .turn-sub { font-size: 13px; color: rgba(255,255,255,0.7); max-width: 280px; line-height: 1.6; }
 
-    /* — buttons — */
+
     .btn {
         display: inline-flex; align-items: center; gap: 9px; justify-content: center;
         padding: 15px 30px; border-radius: 13px;
@@ -267,9 +241,7 @@
         .btn-join:hover, .btn-white:hover { transform: none; }
     }
 
-    /* ══════════════════════════════
-       FOOTER
-    ══════════════════════════════ */
+   
     .footer-bar {
         background: var(--white);
         border-top: 1px solid var(--border-soft);
@@ -283,9 +255,7 @@
     }
     .footer-bar strong { font-family: 'Syne', sans-serif; color: var(--ink); font-weight: 700; }
 
-    /* ══════════════════════════════
-       RESPONSIVE
-    ══════════════════════════════ */
+
     @media (max-width: 600px) {
         .topbar { padding: 14px 20px; }
         .profile-meta { display: none; }
@@ -297,7 +267,7 @@
         .step-label { font-size: 9.5px; max-width: 58px; }
     }
 
-    /* ── LOADING SPINNER ON BUTTONS ── */
+  
     .btn-loading {
         pointer-events: none !important;
         opacity: 0.7 !important;
@@ -308,7 +278,7 @@
     .spinner { animation: spin 0.8s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ── TOAST ── */
+  
     .toast-container {
         position: fixed;
         top: 20px;
@@ -316,31 +286,39 @@
         z-index: 9999;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 10px;
     }
     .toast {
-        padding: 14px 20px;
-        border-radius: 12px;
-        font-size: 13px;
-        font-weight: 500;
+        padding: 17px 23px;
+        border-radius: 14px;
+        font-size: 16px;
+        font-weight: 600;
         color: var(--white);
-        box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
         display: flex;
         align-items: center;
-        gap: 10px;
-        min-width: 260px;
+        gap: 12px;
+        min-width: 320px;
         max-width: 400px;
-        animation: slideIn 0.3s ease;
+        animation: slideIn 0.35s ease;
         transition: opacity 0.3s ease;
     }
     .toast-success { background: #16A34A; }
     .toast-error { background: #DC2626; }
     .toast-info { background: var(--cyan-deep); }
+    .toast-alert {
+        background: linear-gradient(145deg, #0C4A6E, #0E7490);
+        min-width: 440px;
+        padding: 24px 32px;
+        font-size: 16px;
+        border: 1px solid var(--cyan-bright);
+    }
     @keyframes slideIn {
         from { transform: translateX(100%); opacity: 0; }
         to { transform: translateX(0); opacity: 1; }
     }
 </style>
+@vite('resources/js/app.js')
 </head>
 <body>
 
@@ -348,18 +326,13 @@
 
 <div class="toast-container" id="toastContainer"></div>
 
-<!-- ═══════════════ TOP BAR ═══════════════ -->
+
 <header class="topbar">
     <div class="wordmark">
-        <div class="wordmark-icon">
-            <svg viewBox="0 0 18 18"><path d="M9 2v4M9 12v4M2 9h4M12 9h4"/><circle cx="9" cy="9" r="2.5"/></svg>
-        </div>
-        <span class="wordmark-text">Clini<span>que</span></span>
+        <img src="{{ asset('images/logo2.png') }}" alt="Clinique logo" style="height: 32px; width: auto;">
+        <span class="wordmark-logo">Clinique</span>
     </div>
     <div class="topbar-right">
-        <button class="icon-btn" title="Notifications" aria-label="Notifications">
-            <svg viewBox="0 0 18 18"><path d="M5 7a4 4 0 0 1 8 0c0 2 1 3 1 4H4c0-1 1-2 1-4Z"/><path d="M7.5 13.5a1.5 1.5 0 0 0 3 0"/></svg>
-        </button>
         <div class="profile-chip">
             <div class="avatar">{{ substr(Auth::user()->name, 0, 2) }}</div>
             <div class="profile-meta">
@@ -376,7 +349,7 @@
     </div>
 </header>
 
-<!-- ═══════════════ MAIN ═══════════════ -->
+
 <main class="main">
 
     <div>
@@ -385,10 +358,10 @@
        
     </div>
 
-    <!-- STATUS CARD -->
+  
     <div class="status-card" id="statusCard">
 
-        <!-- empty state -->
+   
         <div id="emptyState" style="display:flex;flex-direction:column;align-items:center;gap:18px;">
             <div class="empty-icon">
                 <svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 9h6M9 13h6M9 17h3"/></svg>
@@ -403,7 +376,7 @@
             </button>
         </div>
 
-        <!-- joined / waiting state -->
+    
         <div id="joinedState" style="display:none;flex-direction:column;align-items:center;gap:22px;width:100%;">
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
                 <span class="ticket-label">Your queue number</span>
@@ -451,7 +424,7 @@
                     <div class="ns-icon"><svg viewBox="0 0 18 18"><rect x="2" y="4" width="14" height="10" rx="2"/><path d="M6 4V3M12 4V3"/><path d="M2 8h14"/></svg></div>
                     <div>
                         <div class="ns-label">Now Serving</div>
-                        <div class="ns-value">#039 · Window 2</div>
+                        <div class="ns-value">#- · -</div>
                     </div>
                 </div>
                 <span class="auto-note">
@@ -472,7 +445,7 @@
             </button>
         </div>
 
-        <!-- your turn state -->
+  
         <div id="turnState" style="display:none;width:100%;flex-direction:column;align-items:center;gap:18px;">
             <div class="turn-card">
                 <span class="turn-badge">It's your turn</span>
@@ -482,7 +455,7 @@
             </div>
             <button class="btn btn-leave" id="doneBtn" style="width:100%;">
                 <svg viewBox="0 0 16 16"><path d="M3 8.5l3.5 3.5L13 4"/></svg>
-                Done — leave queue
+                Done! -  leave queue
             </button>
         </div>
 
@@ -519,6 +492,7 @@
     const leaveBtn = document.getElementById("leaveBtn");
     const doneBtn = document.getElementById("doneBtn");
     const toastContainer = document.getElementById("toastContainer");
+    let lastAlertPosition = null;
 
     function toast(message, type) {
         type = type || 'info';
@@ -526,10 +500,11 @@
         el.className = 'toast toast-' + type;
         el.textContent = message;
         toastContainer.appendChild(el);
+        var duration = type === 'alert' ? 6000 : 3000;
         setTimeout(function () {
             el.style.opacity = '0';
             setTimeout(function () { el.remove(); }, 300);
-        }, 3000);
+        }, duration);
     }
 
     function setLoading(btn, loading) {
@@ -593,6 +568,21 @@
         estWaitValue.textContent = (pos * 4) + ' min';
         setStage(pos);
 
+   
+        var alertPositions = [1, 2, 3, 4, 5, 7, 10];
+        if (alertPositions.indexOf(pos) !== -1 && lastAlertPosition !== pos) {
+            lastAlertPosition = pos;
+            var msg;
+            if (pos === 10) msg = 'You are now 10th in line';
+            else if (pos === 7) msg = 'You are now 7th in line';
+            else if (pos === 5) msg = 'Only 5 patients ahead of you';
+            else if (pos === 4) msg = 'You are 4th in line — getting close!';
+            else if (pos === 3) msg = 'Please prepare, you\u2019re almost next';
+            else if (pos === 2) msg = 'You\u2019re next in line!';
+            else if (pos === 1) msg = 'You are next!';
+            if (msg) toast(msg, 'alert');
+        }
+
         if (data.now_serving) {
             var ns = data.now_serving;
             nowServingValue.textContent = '#' + ns.queue_number + (ns.window_number ? ' \u00B7 ' + ns.window_number : '');
@@ -605,12 +595,18 @@
 
     function startPolling() {
         stopPolling();
-        pollingHandle = setInterval(fetchMyQueue, 5000);
+     
+        pollingHandle = setInterval(fetchMyQueue, 60000);
     }
 
     function stopPolling() {
         if (pollingHandle) { clearInterval(pollingHandle); pollingHandle = null; }
     }
+
+
+    document.addEventListener('queue:updated', function () {
+        fetchMyQueue();
+    });
 
     function joinQueue() {
         setLoading(joinBtn, true);

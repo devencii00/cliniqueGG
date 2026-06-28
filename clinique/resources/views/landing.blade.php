@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clinique — Smart Queue System</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ asset('images/weblog.ico') }}" type="image/x-icon">
+  
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -30,9 +29,7 @@
             overflow-x: hidden;
         }
 
-        /* ══════════════════════════════
-           TOP PANEL — dominant, full hero
-        ══════════════════════════════ */
+   
         .top-panel {
             background: linear-gradient(145deg, #0C4A6E 0%, #0E7490 50%, #0891B2 100%);
             min-height: 72vh;
@@ -42,7 +39,7 @@
             flex-direction: column;
         }
 
-        /* grid overlay texture */
+     
         .top-panel::before {
             content: '';
             position: absolute;
@@ -54,7 +51,7 @@
             pointer-events: none;
         }
 
-        /* glow orbs */
+    
         .orb {
             position: absolute;
             border-radius: 50%;
@@ -89,7 +86,7 @@
             50%      { transform: translate(18px, -18px); }
         }
 
-        /* ── NAV ── */
+      
         .nav {
             position: relative;
             z-index: 10;
@@ -105,32 +102,13 @@
             gap: 10px;
         }
 
-        .wordmark-icon {
-            width: 34px; height: 34px;
-            background: rgba(255,255,255,0.12);
-            border: 1px solid rgba(255,255,255,0.18);
-            border-radius: 10px;
-            display: grid;
-            place-items: center;
-        }
-
-        .wordmark-icon svg {
-            width: 18px; height: 18px;
-            fill: none;
-            stroke: var(--cyan-bright);
-            stroke-width: 2;
-            stroke-linecap: round;
-        }
-
-        .wordmark-text {
+        .wordmark-logo {
             font-family: 'Syne', sans-serif;
             font-size: 20px;
             font-weight: 800;
             color: var(--white);
             letter-spacing: -0.3px;
         }
-
-        .wordmark-text span { color: var(--cyan-bright); }
 
         .nav-badge {
             display: flex;
@@ -158,7 +136,6 @@
             50%      { opacity:0.35; transform:scale(0.75); }
         }
 
-        /* ── HERO BODY ── */
         .hero-body {
             position: relative;
             z-index: 10;
@@ -204,7 +181,7 @@
             margin-bottom: 44px;
         }
 
-        /* ── CTA GROUP ── */
+   
         .cta-group {
             display: flex;
             align-items: center;
@@ -261,7 +238,7 @@
 
         .btn:active { transform: translateY(0); }
 
-        /* ── TICKET STRIP (overlapping) ── */
+
         .ticket-strip-wrap {
             position: relative;
             z-index: 20;
@@ -330,9 +307,7 @@
             flex-shrink: 0;
         }
 
-        /* ══════════════════════════════
-           BOTTOM PANEL — supporting
-        ══════════════════════════════ */
+  
         .bottom-panel {
             background: var(--white);
             padding: 80px 56px 72px;
@@ -342,7 +317,6 @@
             gap: 64px;
         }
 
-        /* ── HOW IT WORKS ── */
         .section-label {
             font-size: 10px;
             font-weight: 700;
@@ -426,7 +400,7 @@
             color: var(--ink-soft);
         }
 
-        /* ── FOOTER CTA ── */
+      
         .footer-cta {
             text-align: center;
             display: flex;
@@ -465,7 +439,7 @@
             color: var(--cyan-deep);
         }
 
-        /* ── FOOTER BAR ── */
+  
         .footer-bar {
             background: var(--cyan-ice);
             border-top: 1px solid #E0F7FA;
@@ -483,7 +457,6 @@
             font-weight: 700;
         }
 
-        /* ── RESPONSIVE ── */
         @media (max-width: 860px) {
             .nav, .bottom-panel, .footer-bar { padding-left: 28px; padding-right: 28px; }
             .ticket-strip-wrap { padding: 0 20px; }
@@ -510,27 +483,20 @@
 </head>
 <body>
 
-    <!-- ═══════════════════════════════════
-         TOP PANEL — dominant hero
-    ═══════════════════════════════════ -->
+
     <section class="top-panel">
 
-        <!-- bg orbs -->
+     
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
         <div class="orb orb-3"></div>
 
-        <!-- Nav -->
+     
         <nav class="nav">
-            <div class="wordmark">
-                <div class="wordmark-icon">
-                    <svg viewBox="0 0 18 18">
-                        <path d="M9 2v4M9 12v4M2 9h4M12 9h4"/>
-                        <circle cx="9" cy="9" r="2.5"/>
-                    </svg>
-                </div>
-                <span class="wordmark-text">Clini<span>que</span></span>
-            </div>
+           <div class="wordmark">
+    <img src="{{ asset('images/logo2.png') }}" alt="Clinique logo" style="height: 32px; width: auto;">
+    <span class="wordmark-logo">Clinique</span>
+</div>
 
             <div class="nav-badge">
                 <span class="live-dot"></span>
@@ -538,7 +504,7 @@
             </div>
         </nav>
 
-        <!-- Hero -->
+  
         <div class="hero-body">
             <p class="hero-eyebrow">Digital Queue Management</p>
 
@@ -573,7 +539,7 @@
 
     </section>
 
-    <!-- Ticket strip — overlaps both panels -->
+
     <div class="ticket-strip-wrap">
         <div class="ticket-strip">
 
@@ -626,12 +592,10 @@
         </div>
     </div>
 
-    <!-- ═══════════════════════════════════
-         BOTTOM PANEL — supporting
-    ═══════════════════════════════════ -->
+ 
     <section class="bottom-panel">
 
-        <!-- How it works -->
+   
         <div style="display:flex;flex-direction:column;align-items:center;gap:36px;width:100%;max-width:820px;">
             <div>
                 <p class="section-label">How it works</p>
@@ -678,7 +642,7 @@
             </div>
         </div>
 
-        <!-- Footer CTA -->
+       
         <div class="footer-cta">
             <p class="section-label">Ready to get started?</p>
             <h2 class="section-title" style="font-size:clamp(22px,3vw,30px);">Skip the line. Join Clinique today.</h2>
@@ -701,7 +665,7 @@
 
     </section>
 
-    <!-- Footer bar -->
+
     <footer class="footer-bar">
         <span><strong>Clinique</strong> — Smart Queue System</span>
         <span>Built for efficient, stress-free clinic visits.</span>

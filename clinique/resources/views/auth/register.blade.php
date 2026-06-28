@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account — Clinique</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ asset('images/weblog.ico') }}" type="image/x-icon">
+
+    
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -38,13 +38,13 @@
             grid-template-rows: auto 1fr auto;
         }
 
-        /* ── ACCENT BAR ── */
+       
         .accent-bar {
             height: 4px;
             background: linear-gradient(90deg, var(--cyan-deep), var(--cyan-bright), var(--cyan-mid));
         }
 
-        /* ── NAV ── */
+    
         .nav {
             background: var(--white);
             border-bottom: 1px solid #F1F5F9;
@@ -61,31 +61,13 @@
             text-decoration: none;
         }
 
-        .wordmark-icon {
-            width: 32px; height: 32px;
-            background: linear-gradient(135deg, var(--cyan-mid), var(--cyan-deep));
-            border-radius: 9px;
-            display: grid;
-            place-items: center;
-        }
-
-        .wordmark-icon svg {
-            width: 17px; height: 17px;
-            fill: none;
-            stroke: white;
-            stroke-width: 2;
-            stroke-linecap: round;
-        }
-
-        .wordmark-text {
+        .wordmark-logo {
             font-family: 'Syne', sans-serif;
             font-size: 19px;
             font-weight: 800;
             color: var(--ink);
             letter-spacing: -0.3px;
         }
-
-        .wordmark-text span { color: var(--cyan-mid); }
 
         .nav-right {
             font-size: 13px;
@@ -100,7 +82,7 @@
 
         .nav-right a:hover { color: var(--cyan-deep); }
 
-        /* ── MAIN ── */
+
         .main {
             display: flex;
             align-items: flex-start;
@@ -130,7 +112,6 @@
             pointer-events: none;
         }
 
-        /* ── CARD ── */
         .card {
             position: relative;
             z-index: 2;
@@ -145,7 +126,7 @@
             overflow: hidden;
         }
 
-        /* ── CARD HEADER ── */
+
         .card-header {
             background: linear-gradient(135deg, #0C4A6E 0%, #0E7490 60%, #0891B2 100%);
             padding: 36px 40px 32px;
@@ -210,7 +191,7 @@
             z-index: 1;
         }
 
-        /* ── STEP INDICATORS ── */
+
         .steps-bar {
             display: flex;
             align-items: center;
@@ -270,12 +251,12 @@
 
         .pip-label.active { color: rgba(255,255,255,0.85); }
 
-        /* ── CARD BODY ── */
+  
         .card-body {
             padding: 36px 40px 40px;
         }
 
-        /* ── ALERT ── */
+  
         .alert-error {
             background: #FEF2F2;
             border: 1px solid #FECACA;
@@ -289,7 +270,7 @@
         .alert-error ul { padding-left: 16px; }
         .alert-error li { margin-top: 4px; }
 
-        /* ── SECTION LABEL ── */
+
         .field-section {
             font-size: 10px;
             font-weight: 700;
@@ -301,14 +282,14 @@
             border-bottom: 1px solid #F1F5F9;
         }
 
-        /* ── FORM ROW (2-col) ── */
+   
         .form-row-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 16px;
         }
 
-        /* ── FORM GROUP ── */
+  
         .form-group {
             display: flex;
             flex-direction: column;
@@ -325,7 +306,7 @@
             letter-spacing: 0.1px;
         }
 
-        /* ── INPUT ── */
+   
         .input-wrap {
             position: relative;
         }
@@ -377,7 +358,7 @@
             box-shadow: 0 0 0 3px rgba(239,68,68,0.12);
         }
 
-        /* password toggle */
+   
         .has-toggle .form-input { padding-right: 40px; }
 
         .input-toggle {
@@ -405,7 +386,7 @@
             stroke-linejoin: round;
         }
 
-        /* ── PASSWORD STRENGTH ── */
+
         .strength-wrap {
             display: flex;
             flex-direction: column;
@@ -436,11 +417,11 @@
             color: var(--ink-muted);
         }
 
-        /* ── SPACER ── */
+
         .section-gap { margin-bottom: 28px; }
         .section-gap-sm { margin-bottom: 20px; }
 
-        /* ── TERMS ── */
+
         .terms-wrap {
             display: flex;
             align-items: flex-start;
@@ -474,7 +455,7 @@
 
         .terms-text a:hover { color: var(--cyan-deep); }
 
-        /* ── SUBMIT ── */
+
         .btn-submit {
             width: 100%;
             padding: 14px;
@@ -516,7 +497,7 @@
         .spinner { animation: spin 0.8s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* ── DIVIDER + LOGIN LINK ── */
+  
         .divider {
             display: flex;
             align-items: center;
@@ -548,7 +529,7 @@
 
         .login-prompt a:hover { color: var(--cyan-deep); }
 
-        /* ── FOOTER ── */
+   
         .page-footer {
             text-align: center;
             padding: 20px;
@@ -558,7 +539,7 @@
             background: var(--white);
         }
 
-        /* ── RESPONSIVE ── */
+
         @media (max-width: 540px) {
             .nav { padding: 16px 20px; }
             .card-header { padding: 28px 24px 24px; }
@@ -579,27 +560,22 @@
 
     <div class="accent-bar"></div>
 
-    <!-- Nav -->
+   
     <nav class="nav">
         <a href="{{ route('landing') }}" class="wordmark">
-            <div class="wordmark-icon">
-                <svg viewBox="0 0 18 18">
-                    <path d="M9 2v4M9 12v4M2 9h4M12 9h4"/>
-                    <circle cx="9" cy="9" r="2.5"/>
-                </svg>
-            </div>
-            <span class="wordmark-text">Clini<span>que</span></span>
+            <img src="{{ asset('images/logo2.png') }}" alt="Clinique logo" style="height: 32px; width: auto;">
+            <span class="wordmark-logo">Clinique</span>
         </a>
         <span class="nav-right">
             Have an account? <a href="{{ route('login') }}">Sign in</a>
         </span>
     </nav>
 
-    <!-- Main -->
+
     <main class="main">
         <div class="card">
 
-            <!-- Card header -->
+      
             <div class="card-header">
                 <div class="card-icon">
                     <svg viewBox="0 0 22 22">
@@ -611,7 +587,6 @@
                 <h1 class="card-title">Create your account</h1>
                 <p class="card-subtitle">Join Clinique and skip the physical line</p>
 
-                <!-- Step indicators -->
                 <div class="steps-bar">
                     <div class="step-pip">
                         <div class="pip-circle active">1</div>
@@ -628,7 +603,7 @@
                 </div>
             </div>
 
-            <!-- Card body -->
+     
             <div class="card-body">
 
                 {{-- Validation errors --}}
@@ -645,7 +620,7 @@
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
 
-                    <!-- ── SECTION 1: Personal Info ── -->
+  
                     <p class="field-section">Personal Information</p>
 
                     <div class="form-row-2 section-gap-sm">
@@ -717,7 +692,6 @@
                         </div>
                     </div>
 
-                    <!-- ── SECTION 2: Security ── -->
                     <p class="field-section">Security</p>
 
                     <div class="form-group section-gap-sm">
@@ -746,7 +720,7 @@
                                 </svg>
                             </button>
                         </div>
-                        <!-- Strength meter -->
+               
                         <div class="strength-wrap" id="strength-wrap" style="display:none;">
                             <div class="strength-bars">
                                 <div class="strength-bar" id="sb1"></div>
@@ -785,7 +759,7 @@
                         </div>
                     </div>
 
-                    <!-- Terms -->
+           
                     <div class="terms-wrap">
                         <input type="checkbox" id="terms" name="terms" required>
                         <p class="terms-text">
@@ -795,7 +769,7 @@
                         </p>
                     </div>
 
-                    <!-- Submit -->
+      
                     <button type="submit" class="btn-submit" id="registerSubmitBtn" disabled>
                         <span class="btn-text" id="registerBtnText">
                             <svg viewBox="0 0 16 16">
@@ -832,7 +806,7 @@
 </div>
 
 <script>
-    /* ── Password visibility toggle ── */
+
     function togglePw(inputId, iconId) {
         const input = document.getElementById(inputId);
         const icon  = document.getElementById(iconId);
@@ -845,7 +819,7 @@
                <circle cx="8" cy="8" r="2"/>`;
     }
 
-    /* ── Password strength meter ── */
+  
     function checkStrength(val) {
         const wrap  = document.getElementById('strength-wrap');
         const label = document.getElementById('strength-label');
@@ -875,14 +849,14 @@
         label.style.color = { weak:'#EF4444', fair:'#F59E0B', good:'#22C55E', strong:'#0891B2' }[levels[score-1]?.cls] ?? '#94A3B8';
     }
 
-    // Terms checkbox toggle
+
     const termsCheck = document.getElementById('terms');
     const submitBtn = document.getElementById('registerSubmitBtn');
     termsCheck.addEventListener('change', function () {
         submitBtn.disabled = !this.checked;
     });
 
-    // Loading state on submit
+
     document.querySelector('form').addEventListener('submit', function () {
         const btn = document.getElementById('registerSubmitBtn');
         btn.disabled = true;

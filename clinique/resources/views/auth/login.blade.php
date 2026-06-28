@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login — Clinique</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ asset('images/weblog.ico') }}" type="image/x-icon">
+
+    
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -32,20 +32,19 @@
             color: var(--ink);
         }
 
-        /* ── PAGE SHELL ── */
         .page {
             min-height: 100vh;
             display: grid;
             grid-template-rows: auto 1fr auto;
         }
 
-        /* ── TOP ACCENT BAR ── */
+    
         .accent-bar {
             height: 4px;
             background: linear-gradient(90deg, var(--cyan-deep), var(--cyan-bright), var(--cyan-mid));
         }
 
-        /* ── NAV ── */
+   
         .nav {
             background: var(--white);
             border-bottom: 1px solid #F1F5F9;
@@ -62,31 +61,13 @@
             text-decoration: none;
         }
 
-        .wordmark-icon {
-            width: 32px; height: 32px;
-            background: linear-gradient(135deg, var(--cyan-mid), var(--cyan-deep));
-            border-radius: 9px;
-            display: grid;
-            place-items: center;
-        }
-
-        .wordmark-icon svg {
-            width: 17px; height: 17px;
-            fill: none;
-            stroke: white;
-            stroke-width: 2;
-            stroke-linecap: round;
-        }
-
-        .wordmark-text {
+        .wordmark-logo {
             font-family: 'Syne', sans-serif;
             font-size: 19px;
             font-weight: 800;
             color: var(--ink);
             letter-spacing: -0.3px;
         }
-
-        .wordmark-text span { color: var(--cyan-mid); }
 
         .nav-right {
             font-size: 13px;
@@ -101,7 +82,7 @@
 
         .nav-right a:hover { color: var(--cyan-deep); }
 
-        /* ── MAIN CONTENT ── */
+     
         .main {
             display: flex;
             align-items: center;
@@ -111,7 +92,7 @@
             overflow: hidden;
         }
 
-        /* subtle background decoration */
+
         .main::before {
             content: '';
             position: absolute;
@@ -132,7 +113,7 @@
             pointer-events: none;
         }
 
-        /* ── CARD ── */
+     
         .card {
             position: relative;
             z-index: 2;
@@ -147,7 +128,7 @@
             overflow: hidden;
         }
 
-        /* card top strip */
+
         .card-header {
             background: linear-gradient(135deg, #0C4A6E 0%, #0E7490 60%, #0891B2 100%);
             padding: 36px 40px 32px;
@@ -214,12 +195,12 @@
             z-index: 1;
         }
 
-        /* ── FORM BODY ── */
+   
         .card-body {
             padding: 36px 40px 40px;
         }
 
-        /* validation error list */
+
         .alert-error {
             background: #FEF2F2;
             border: 1px solid #FECACA;
@@ -233,7 +214,7 @@
         .alert-error ul { padding-left: 16px; }
         .alert-error li { margin-top: 4px; }
 
-        /* ── FORM FIELDS ── */
+  
         .form-group {
             display: flex;
             flex-direction: column;
@@ -300,7 +281,7 @@
             box-shadow: 0 0 0 3px rgba(239,68,68,0.12);
         }
 
-        /* password toggle */
+    
         .input-toggle {
             position: absolute;
             right: 14px;
@@ -327,10 +308,9 @@
             stroke-linejoin: round;
         }
 
-        /* field with toggle needs right padding */
+ 
         .has-toggle .form-input { padding-right: 42px; }
 
-        /* ── REMEMBER + FORGOT ── */
         .form-row {
             display: flex;
             align-items: center;
@@ -368,7 +348,7 @@
 
         .forgot-link:hover { color: var(--cyan-deep); }
 
-        /* ── SUBMIT BUTTON ── */
+   
         .btn-submit {
             width: 100%;
             padding: 14px;
@@ -410,7 +390,7 @@
         .spinner { animation: spin 0.8s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* ── DIVIDER ── */
+   
         .divider {
             display: flex;
             align-items: center;
@@ -428,7 +408,6 @@
             background: #E2E8F0;
         }
 
-        /* ── REGISTER LINK ── */
         .register-prompt {
             text-align: center;
             font-size: 13px;
@@ -443,7 +422,6 @@
 
         .register-prompt a:hover { color: var(--cyan-deep); }
 
-        /* ── FOOTER ── */
         .page-footer {
             text-align: center;
             padding: 20px;
@@ -453,7 +431,7 @@
             background: var(--white);
         }
 
-        /* ── RESPONSIVE ── */
+      
         @media (max-width: 480px) {
             .nav { padding: 16px 20px; }
             .card-header { padding: 28px 24px 24px; }
@@ -470,30 +448,24 @@
 
 <div class="page">
 
-    <!-- Accent bar -->
     <div class="accent-bar"></div>
 
   
     <nav class="nav">
         <a href="{{ route('landing') }}" class="wordmark">
-            <div class="wordmark-icon">
-                <svg viewBox="0 0 18 18">
-                    <path d="M9 2v4M9 12v4M2 9h4M12 9h4"/>
-                    <circle cx="9" cy="9" r="2.5"/>
-                </svg>
-            </div>
-            <span class="wordmark-text">Clini<span>que</span></span>
+            <img src="{{ asset('images/logo2.png') }}" alt="Clinique logo" style="height: 32px; width: auto;">
+            <span class="wordmark-logo">Clinique</span>
         </a>
         <span class="nav-right">
             No account? <a href="{{ route('register') }}">Sign up</a>
         </span>
     </nav>
 
-    <!-- Main -->
+    
     <main class="main">
         <div class="card">
 
-            <!-- Card header -->
+      
             <div class="card-header">
                 <div class="card-icon">
                     <svg viewBox="0 0 22 22">
@@ -505,7 +477,7 @@
                 <p class="card-subtitle">Sign in to manage your queue position</p>
             </div>
 
-            <!-- Card body -->
+        
             <div class="card-body">
 
                 {{-- Validation errors --}}
@@ -614,7 +586,6 @@
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="page-footer">
         &copy; {{ date('Y') }} Clinique — Smart Queue Management System
     </footer>
@@ -636,7 +607,7 @@
                <circle cx="8" cy="8" r="2"/>`;
     }
 
-    // Loading state on submit
+   
     document.querySelector('form').addEventListener('submit', function () {
         const btn = document.getElementById('loginSubmitBtn');
         btn.disabled = true;

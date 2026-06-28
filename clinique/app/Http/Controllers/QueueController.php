@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Events\QueueJoined;
 use App\Models\QueueEntry;
+use Illuminate\Http\Request;
 
 class QueueController extends Controller
 {
@@ -26,7 +27,7 @@ class QueueController extends Controller
                 ], 400);
             }
 
-            // Queue number: MMDD-### (random 3 digits)
+      
             $mmdd = now()->format('md');
             $random = str_pad(rand(1, 999), 3, '0', STR_PAD_LEFT);
             $queueNumber = $mmdd . '-' . $random;
@@ -37,6 +38,8 @@ class QueueController extends Controller
                 'queue_number'  => $queueNumber,
                 'window_number' => 'W-' . rand(1, 4),
             ]);
+
+            broadcast(new QueueJoined($entry->load('user'), 'joined'))->toOthers();
 
             return response()->json([
                 'message' => 'Joined queue',
@@ -61,6 +64,8 @@ class QueueController extends Controller
 
         $entry->update(['status' => 'left']);
 
+        broadcast(new QueueJoined($entry->fresh()->load('user'), 'left'))->toOthers();
+
         return response()->json(['message' => 'Left queue']);
     }
 
@@ -68,7 +73,7 @@ class QueueController extends Controller
     {
         $query = QueueEntry::with('user');
 
-        // Today-only filter
+    
         if ($request->boolean('today')) {
             $query->whereDate('created_at', today());
         }
@@ -103,13 +108,14 @@ class QueueController extends Controller
             return response()->json(['message' => 'No patients waiting'], 404);
         }
 
-        // Random window from 1-4
         $window = 'W-' . rand(1, 4);
 
         $next->update([
             'status'        => 'called',
             'window_number' => $window,
         ]);
+
+        broadcast(new QueueJoined($next->fresh()->load('user'), 'called'))->toOthers();
 
         return response()->json([
             'message' => 'Patient called',
@@ -125,6 +131,8 @@ class QueueController extends Controller
 
         $entry = QueueEntry::findOrFail($id);
         $entry->update(['status' => 'done']);
+
+        broadcast(new QueueJoined($entry->fresh()->load('user'), 'done'))->toOthers();
 
         return response()->json([
             'message' => 'Completed',
