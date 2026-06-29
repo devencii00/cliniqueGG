@@ -44,7 +44,7 @@
         ],
               "dev-server": [
             "Composer\\Config::disableProcessTimeout",
-            "npx concurrently --kill-others \"php artisan serve\" \"php artisan reverb:start\" \"php artisan queue:work --sleep=1 --tries=1\""
+            "npx concurrently --kill-others \"php artisan serve\" \"php artisan reverb:start\" \"php artisan queue:work --sleep=0.5 --tries=1\""
         ],
         "dev": "@dev-server",
         "test": [
